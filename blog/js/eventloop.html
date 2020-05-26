@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>四、JavaScript执行顺序（EventLoop、Promise、async...await) | Dinosly的博客</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="icon" href="/dinosly.jpg">
+    <meta name="description" content="Just playing around">
+    <link rel="preload" href="/assets/css/0.styles.aad7041b.css" as="style"><link rel="preload" href="/assets/js/app.03e23f57.js" as="script"><link rel="preload" href="/assets/js/2.7c609b98.js" as="script"><link rel="preload" href="/assets/js/6.0217e9ba.js" as="script"><link rel="prefetch" href="/assets/js/10.a491aaa7.js"><link rel="prefetch" href="/assets/js/11.aeaf59e2.js"><link rel="prefetch" href="/assets/js/3.4cb6f073.js"><link rel="prefetch" href="/assets/js/4.20844974.js"><link rel="prefetch" href="/assets/js/5.65018626.js"><link rel="prefetch" href="/assets/js/7.1b272040.js"><link rel="prefetch" href="/assets/js/8.6954b38f.js"><link rel="prefetch" href="/assets/js/9.546e81bb.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.aad7041b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Dinosly的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/" class="nav-link router-link-active">
+  博客
+</a></div><div class="nav-item"><a href="https://github.com/Dinosly" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/" class="nav-link router-link-active">
+  博客
+</a></div><div class="nav-item"><a href="https://github.com/Dinosly" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Home</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/" class="sidebar-link">Welcome</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>从零搞懂js系列</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/js/js.html" class="sidebar-link">一、变量、执行上下文、作用域、内存、垃圾回收</a></li><li><a href="/blog/js/js2.html" class="sidebar-link">二、数据类型</a></li><li><a href="/blog/js/deepcopy.html" class="sidebar-link">三、深浅拷贝</a></li><li><a href="/blog/js/eventloop.html" class="active sidebar-link">四、JavaScript执行顺序（EventLoop、Promise、async...await)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/js/eventloop.html#_1-javascript同步任务、异步任务" class="sidebar-link">1.JavaScript同步任务、异步任务</a></li><li class="sidebar-sub-header"><a href="/blog/js/eventloop.html#_2-eventloop" class="sidebar-link">2.EventLoop</a></li><li class="sidebar-sub-header"><a href="/blog/js/eventloop.html#_3-promise" class="sidebar-link">3.Promise</a></li><li class="sidebar-sub-header"><a href="/blog/js/eventloop.html#_4-async-await" class="sidebar-link">4.async...await</a></li></ul></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>前端工程化</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/webpack/webpack.html" class="sidebar-link">webpack</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="四、javascript执行顺序（eventloop、promise、async-await"><a href="#四、javascript执行顺序（eventloop、promise、async-await" class="header-anchor">#</a> 四、JavaScript执行顺序（EventLoop、Promise、async...await)</h1> <h2 id="_1-javascript同步任务、异步任务"><a href="#_1-javascript同步任务、异步任务" class="header-anchor">#</a> 1.JavaScript同步任务、异步任务</h2> <h3 id="_1-1单线程"><a href="#_1-1单线程" class="header-anchor">#</a> 1.1单线程</h3> <ul><li>首先JS是<strong>单线程</strong>语言（H5中提到的Web-Worker可以实现多线程效果等后续有精力在了解...）</li> <li>单线程就意味着在按照执行栈中的任务顺序依次执行（<strong>同步任务</strong>），如果单个任务执行时间过长，后面任务就要一直卡死，为了解决这个情况，<strong>异步任务</strong>应运而生</li></ul> <h3 id="_1-2同步任务、异步任务执行过程"><a href="#_1-2同步任务、异步任务执行过程" class="header-anchor">#</a> 1.2同步任务、异步任务执行过程</h3> <p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-80WX0Qyl-1588935610497)(https://user-gold-cdn.xitu.io/2020/5/7/171ee64be4de4bc0?w=1148&amp;h=960&amp;f=png&amp;s=401302)]</p> <ul><li>1.形成js执行栈，整个代码片为一个宏任务</li> <li>2.按照执行栈中同步任务的顺序依次执行</li> <li>3.碰到异步任务，就在任务队列中增加一个任务事件</li> <li>4.等到执行栈为空，开始将任务队列中的异步任务结束等待，入栈执行（从任务队列里找到最先入队的任务）</li> <li>5.结束执行，内存资源释放</li> <li><strong>依次循环2.3.4执行，这个过程称为EventLoop</strong></li></ul> <h2 id="_2-eventloop"><a href="#_2-eventloop" class="header-anchor">#</a> 2.EventLoop</h2> <h3 id="_2-1宏任务"><a href="#_2-1宏任务" class="header-anchor">#</a> 2.1宏任务</h3> <ul><li>script全部代码</li> <li>setTimeout</li> <li>setInterval</li> <li>setImmediate</li> <li>I/O操作</li> <li>UI界面渲染</li></ul> <h3 id="_2-2微任务"><a href="#_2-2微任务" class="header-anchor">#</a> 2.2微任务</h3> <ul><li>Promise</li> <li>Process.nextTick（Node独有）</li> <li>MutationObserver</li></ul> <p><a href="https://juejin.im/post/5c3d8956e51d4511dc72c200#heading-6" target="_blank" rel="noopener noreferrer">EventLoop介绍的非常详细，参考这个博主大大<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <h2 id="_3-promise"><a href="#_3-promise" class="header-anchor">#</a> 3.Promise</h2> <h3 id="_3-1-什么是promise"><a href="#_3-1-什么是promise" class="header-anchor">#</a> 3.1 什么是promise</h3> <ul><li>异步编程的一种解决方式</li> <li>一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果</li> <li>从语法上说，Promise 是一个对象，从它可以获取异步操作的消息
+<ul><li>对象状态不受外界影响，只会根据异步操作的结果决定
+<ul><li>pending（进行中）</li> <li>fulfilled（成功）</li> <li>rejected（拒绝）</li> <li>resolved（结束）</li></ul></li> <li>一旦改变，就不会再变
+<ul><li>pending -&gt; fulfilled</li> <li>pending -&gt; rejected</li></ul></li> <li>不能取消，一旦新建就会<strong>立即执行</strong></li> <li>pending状态下无法得知进行状态（是刚开始还是快要完成了）</li> <li>如果不设置回调函数，会在内部抛出错误</li></ul></li></ul> <h3 id="_3-2-promise-怎么用"><a href="#_3-2-promise-怎么用" class="header-anchor">#</a> 3.2 promise 怎么用</h3> <h4 id="_3-2-1-promise对象是一个构造函数，用来生成promise实例"><a href="#_3-2-1-promise对象是一个构造函数，用来生成promise实例" class="header-anchor">#</a> 3.2.1 Promise对象是一个构造函数，用来生成Promise实例</h4> <div class="language- extra-class"><pre class="language-text"><code>const promise = new Promise((resolve,reject)=&gt;{
+    if(//异步执行成功调用resolve函数){
+        resolve(value)
+    }else{
+        //异步执行失败调用reject函数
+        reject(value)
+    }
+})
+</code></pre></div><ul><li>通常生成promise实例后，通过then方法指定resolved和rejected状态的回调函数</li> <li>第一个参数为resolve的回调函数，必填（不指定执行成功后的回调函数在promise实例内会抛出异常），第二个参数reject的回调函数是可选的（一般不定义在then函数中，一般在then后链式调用catch）</li></ul> <div class="language- extra-class"><pre class="language-text"><code>//不推荐
+promise.then(
+     //第一个参数为resolve的回调函数，必填，第二个参数reject的回调函数是可选的，我们不推荐这样写
+    (value)=&gt;{//resolve 成功},
+    (value)=&gt;{//reject 失败}
+)
+//推荐写法
+promise.then(data=&gt;{
+    //resolve
+}).catch(err=&gt;{
+    //reject
+    //此处不catch的话，外部是不会有报错的，即不会捕获promise实例reject的状态
+})
+</code></pre></div><ul><li>参数
+<a href="https://es6.ruanyifeng.com/#docs/promise#Promise-%E7%9A%84%E5%90%AB%E4%B9%89" target="_blank" rel="noopener noreferrer">Promise-的含义，参考阮一峰大大<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul> <h2 id="_4-async-await"><a href="#_4-async-await" class="header-anchor">#</a> 4.async...await</h2> <h3 id="_4-1-什么是async"><a href="#_4-1-什么是async" class="header-anchor">#</a> 4.1 什么是async</h3> <ul><li><strong>async修饰的函数内会有异步任务，需要等待await修饰的函数执行完在继续执行其他语句</strong></li> <li>async函数可以看作多个异步操作，包装成的一个 Promise 对象，而await命令就是内部then命令的语法糖</li> <li>async函数内任何一个await语句返回reject，后面的语句都不会执行
+<ul><li>解决办法：await放到try...catch语句中</li></ul></li> <li>本质为generator的语法糖</li></ul> <h3 id="_4-2-什么是await"><a href="#_4-2-什么是await" class="header-anchor">#</a> 4.2 什么是await</h3> <ul><li><p>await返回一个promise对象，如果修饰的不是promise对象就返回其值</p></li> <li><p>不能单独使用，必须配合async</p></li> <li><p>不存在继发关系，最好让它们同时触发</p> <ul><li>实现方式：</li></ul> <div class="language- extra-class"><pre class="language-text"><code>let [foo, bar] = await Promise.all([getFoo(), getBar()]);
+</code></pre></div></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/js/deepcopy.html" class="prev">
+        三、深浅拷贝
+      </a></span> <span class="next"><a href="/blog/webpack/webpack.html">
+        webpack
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.03e23f57.js" defer></script><script src="/assets/js/2.7c609b98.js" defer></script><script src="/assets/js/6.0217e9ba.js" defer></script>
+  </body>
+</html>
